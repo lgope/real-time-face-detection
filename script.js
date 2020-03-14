@@ -1,4 +1,6 @@
 const video = document.getElementById('video');
+const waitInfo = document.getElementById('loading-tag');
+waitInfo.innerHTML = 'Please wait ...';
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
@@ -13,6 +15,7 @@ function startVideo() {
     stream => (video.srcObject = stream),
     err => console.error(err)
   );
+  waitInfo.innerHTML = '';
 }
 
 video.addEventListener('play', () => {
